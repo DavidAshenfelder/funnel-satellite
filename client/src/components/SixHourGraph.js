@@ -8,7 +8,7 @@ const RenderLineChart = () => {
   const [history, setHistory] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("/history")
+    fetch("/api/history")
       .then((res) => res.json())
       .then((data) => {
         setHistory(data)

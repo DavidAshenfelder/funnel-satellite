@@ -44,7 +44,7 @@ const allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 app.use(timeout('300s'));
 
-app.get("/status", (req, res, next) => {
+app.get("/api/status", (req, res, next) => {
   try {
     const statusObj = getStatusFromDB({ db }).then(resp => {
       res.send(formatStatusHealthData({ data: resp}));
@@ -54,7 +54,7 @@ app.get("/status", (req, res, next) => {
   }
 });
 
-app.get("/history", (req, res, next) => {
+app.get("/api/history", (req, res, next) => {
   try {
     const statusObj = getHistoryFromDB({ db, hours: 12 }).then(resp => {
       res.send(formatHistoryData({ data: resp}));
@@ -64,7 +64,7 @@ app.get("/history", (req, res, next) => {
   }
 });
 
-app.get("/health", (req, res, next) => {
+app.get("/api/health", (req, res, next) => {
   try {
     const message = getHealthFromDB({ db }).then(resp => {
       res.send(formatStatusHealthData({ data: resp}));

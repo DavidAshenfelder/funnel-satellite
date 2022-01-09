@@ -23,7 +23,7 @@ export default function BasicCard() {
   });
 
   React.useEffect(() => {
-    fetch("/health")
+    fetch("/api/health")
       .then((res) => res.json())
       .then((data) => {
         setHealth(data)

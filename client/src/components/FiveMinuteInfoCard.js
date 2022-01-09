@@ -22,7 +22,7 @@ export default function BasicCard() {
   });
 
   React.useEffect(() => {
-    fetch("/status")
+    fetch("/api/status")
       .then((res) => res.json())
       .then((data) => {
         setStatus(data)
