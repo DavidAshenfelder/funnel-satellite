@@ -74,10 +74,10 @@ app.get("/health", (req, res, next) => {
   }
 });
 
-// All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));
-});
+// // All other GET requests not handled before will return our React app
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));
+// });
 
 // Create socket server and tie into app
 const server = require('http').createServer(app);
