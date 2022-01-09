@@ -4,13 +4,13 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "client": "cd client && yarn && yarn build",
+    "client": "cd client && npm i && npm run build",
     "build": "babel server/src -d server/dist",
     "start": "npm run build && node server/dist",
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart",
     "test": "jest server/src",
-    "heroku-postbuild": "yarn client"
+    "heroku-postbuild": "npm run client"
   },
   "keywords": [],
   "author": "",
