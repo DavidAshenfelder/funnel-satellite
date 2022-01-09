@@ -2,13 +2,13 @@
   "name": "funnel-satellite-assessment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
-    "build": "babel src -d dist",
-    "start": "npm run build && node dist",
+    "build": "babel server/src -d server/dist",
+    "start": "npm run build && node server/dist",
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart",
-    "test": "jest src"
+    "test": "jest server/src"
   },
   "keywords": [],
   "author": "",
