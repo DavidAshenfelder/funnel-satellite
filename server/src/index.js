@@ -43,6 +43,7 @@ const allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 app.use(timeout('300s'));
+app.set('port', PORT);
 
 app.get("/api/status", (req, res, next) => {
   try {
