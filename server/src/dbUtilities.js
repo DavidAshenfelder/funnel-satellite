@@ -126,3 +126,11 @@ export const getHistoryFromDB = ({ db, hours = 6 }) => {
     }
   })
 };
+
+export const deleteRecordsOverOneDayOld = ({ db }) => {
+  const collection = db.collection('satellite');
+  const oneDayAgo = moment().subtract(1, 'day').toISOString();
+
+  collection.deleteMany({'created_at': { $lte: oneDayAgo }});
+  console.log('Deleted old records');
+}
