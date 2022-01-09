@@ -10,10 +10,11 @@
     "build-server": "npm i && babel server/src -d server/dist",
     "start-server": "node server/dist",
     "build": "npm run build-server && npm run build-client",
-    "start": "npm run start-server & npm run start-client",
+    "start": "npm run start-server",
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart",
-    "test": "jest server/src"
+    "test": "jest server/src",
+    "heroku-postbuild": "npm run start-client"
   },
   "keywords": [],
   "author": "",
