@@ -79,6 +79,8 @@ app.get("/api/health", (req, res, next) => {
 //   res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));
 // });
 
+app.use(express.static(path.join(__dirname, '../../client/build')));
+
 // Create socket server and tie into app
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
