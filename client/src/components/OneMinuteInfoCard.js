@@ -57,7 +57,7 @@ export default function BasicCard() {
     <Card sx={{ width: 300, height: 400, margin: '1em' }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          1 Minutes Health
+          1 Minute Health
         </Typography>
         {!health ?
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
