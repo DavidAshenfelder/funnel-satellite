@@ -8,7 +8,7 @@
     "start-client": "cd client && npm start",
     "build-only-server": "babel server/src -d server/dist",
     "build-server": "npm i && babel server/src -d server/dist",
-    "start-server": "node server/dist",
+    "start-server": "nodemon server/dist",
     "build": "npm run build-server && npm run build-client",
     "start": "npm run start-server",
     "restart": "rimraf dist && npm run start",
