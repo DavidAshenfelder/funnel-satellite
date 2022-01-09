@@ -14,7 +14,7 @@
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart",
     "test": "jest server/src",
-    "heroku-postbuild": "npm run start-client"
+    "heroku-postbuild": "npm run build && npm run start-client"
   },
   "keywords": [],
   "author": "",
