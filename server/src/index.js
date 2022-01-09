@@ -56,7 +56,7 @@ app.get("/status", (req, res, next) => {
 
 app.get("/history", (req, res, next) => {
   try {
-    const statusObj = getHistoryFromDB({ db, hours: 6 }).then(resp => {
+    const statusObj = getHistoryFromDB({ db, hours: 12 }).then(resp => {
       res.send(formatHistoryData({ data: resp}));
     });
   } catch (err) {
