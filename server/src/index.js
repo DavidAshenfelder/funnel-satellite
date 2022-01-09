@@ -13,12 +13,12 @@ import {
   formatStatusHealthData,
   formatHistoryData
 } from './dbUtilities';
+import config from './config';
 
-const PORT = process.env.PORT || 3002;
+const PORT = config.port;
+const ENVIRONMENT = config.environment;
 
 const app = express();
-
-import config from './config';
 
 try {
   mongoose.connect(config.database, {useNewUrlParser: true, useUnifiedTopology: true, dbName: 'FunnelLeasing'}, () =>
@@ -74,6 +74,11 @@ app.get("/health", (req, res, next) => {
   }
 });
 
+// All other GET requests not handled before will return our React app
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../client/build', 'index.html'));
+});
+
 // Create socket server and tie into app
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
@@ -103,18 +108,31 @@ cron.schedule('*/11 * * * * *', () => {
   })
 });
 
-cron.schedule('*/11 * * * * *', () => {
-  axios.get('http://nestio.space/api/satellite/data')
-    .then((resp) => {
-    const now = moment().toISOString();
-    const item = {
-      ...resp.data,
-      created_at: now,
-    };
-    const collection = db.collection('satellite');
-    collection.insertOne(item, function (err, result) {
+// This will prevent duplicate records in the case
+// that multiple environments are running at once
+// If you are running a local mongodb instance then just
+// OVERRIDE_WRITE_BLOCK = true;
+const OVERRIDE_WRITE_BLOCK = false;
+
+if (ENVIRONMENT === 'production' || OVERRIDE_WRITE_BLOCK) {
+  console.log('PRODUCTION or OVERRIDE: write to db');
+
+  cron.schedule('*/11 * * * * *', () => {
+    axios.get('http://nestio.space/api/satellite/data')
+      .then((resp) => {
+      const now = moment().toISOString();
+      const item = {
+        ...resp.data,
+        created_at: now,
+      };
+      const collection = db.collection('satellite');
+
+      collection.insertOne(item, function (err, result) {
+      });
+    }).catch(error => {
+      console.log(error);
     });
-  }).catch(error => {
-    console.log(error);
   });
-});
+} else {
+  console.log('NOT PRODUCTION: Do not write to db');
+}

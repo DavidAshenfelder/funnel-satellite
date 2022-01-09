@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -12,7 +10,6 @@ import socket from '../socket';
 
 export default function BasicCard() {
   const [status, setStatus] = React.useState(null);
-  const [health, setHealth] = React.useState(null);
 
   function preventHorizontalKeyboardNavigation(event) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {

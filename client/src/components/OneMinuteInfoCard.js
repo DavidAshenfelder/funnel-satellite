@@ -2,7 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Slider from '@mui/material/Slider';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -32,8 +31,6 @@ export default function BasicCard() {
   }, []);
 
     let marks = []
-    let minAlt = 0;
-    let maxAlt = 0;
     let avgAlt = 0;
 
     if (health) {
