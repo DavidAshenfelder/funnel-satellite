@@ -63,7 +63,8 @@ export const formatHistoryData = ({ data }) => {
 
   let averageAltitudeOfHour = 0;
   let totalAltitudeOfHour = 0;
-  let topOfLoopHour = moment(topOfLastHour).subtract(1, 'hour');
+  let topOfLoopHour = moment(topOfLastHour);
+  let topOfLoopHourMinus1 = moment(topOfLoopHour).subtract(1, 'hour')
   let itemsInHour = 0
   const historicalData = [];
 
@@ -74,7 +75,7 @@ export const formatHistoryData = ({ data }) => {
       const recordMoment = moment(item.created_at);
       // check to see if the time is after the top of the hours
       // because if it is then it would be in the next data set.
-      if (recordMoment.isSameOrAfter(topOfLoopHour)) {
+      if (recordMoment.isSameOrAfter(topOfLoopHourMinus1)) {
         // if not then add to the data set for the current hour.
         itemsInHour += 1;
         totalAltitudeOfHour += item.altitude;
@@ -92,6 +93,7 @@ export const formatHistoryData = ({ data }) => {
           averageAltitudeOfHour = 0;
           totalAltitudeOfHour = 0;
           topOfLoopHour = moment(topOfLoopHour).subtract(1, 'hour');
+          topOfLoopHourMinus1 = moment(topOfLoopHour).subtract(1, 'hour');
 
           // don't forget to include the current item in the new data calculations.
           itemsInHour += 1;

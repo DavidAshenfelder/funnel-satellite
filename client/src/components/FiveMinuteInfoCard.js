@@ -94,8 +94,9 @@ export default function BasicCard() {
                   aria-label="Altitude"
                   valueLabelDisplay="auto"
                   getAriaValueText={valuetext}
-                  step={200}
-                  max={200}
+                  step={190}
+                  max={190}
+                  min={130}
                   onKeyDown={preventHorizontalKeyboardNavigation}
                 />
               </Box>
