@@ -43,7 +43,7 @@ const RenderLineChart = () => {
         <Line type="monotone" dataKey="altitude" stroke="#f700ff" strokeWidth={3}/>
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
         <XAxis dataKey="label" />
-        <YAxis type="number" domain={[150, 170]} />
+        <YAxis type="number" domain={[130, 170]} />
         <Tooltip />
       </LineChart>
     </CardContent>
