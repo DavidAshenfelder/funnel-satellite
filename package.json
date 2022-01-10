@@ -11,6 +11,7 @@
     "start-server": "nodemon server/dist",
     "build": "npm run build-server && npm run build-client",
     "start": "npm run start-server",
+    "start-all": "npm run start-server & npm run start-client",
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon --exec npm run restart",
     "test": "jest server/src",

@@ -1,7 +1,6 @@
 // client/src/App.js
 
 import React from "react";
-import logo from "./logo.svg";
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import "./App.css";
 import Dashboard from './Dashboard';
