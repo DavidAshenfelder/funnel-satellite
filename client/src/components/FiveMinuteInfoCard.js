@@ -33,27 +33,36 @@ export default function BasicCard() {
     let minAlt = 0;
     let maxAlt = 0;
     let avgAlt = 0;
+    let isMinTooClose = false;
+    let isMaxTooClose = false;
 
     if (status) {
 
       minAlt = parseFloat(status.minimumAltitude).toFixed(2);
       maxAlt = parseFloat(status.maximumAltitude).toFixed(2);
       avgAlt = parseFloat(status.averageAltitude).toFixed(2);
+      isMinTooClose = (avgAlt - minAlt) < 3;
+      isMaxTooClose = (minAlt - avgAlt) < 3;
 
       marks = [
-        {
-          value: status.minimumAltitude,
-          label: `Min Altitude ${minAlt}`,
-        },
-        {
-          value: status.maximumAltitude,
-          label: `Max Altitude ${maxAlt}`,
-        },
         {
           value: status.averageAltitude,
           label: `Avg. Altitude ${avgAlt}`,
         },
       ];
+
+      if (!isMinTooClose) {
+        marks.push({
+          value: status.minimumAltitude,
+          label: `Min Altitude ${minAlt}`,
+        })
+      }
+      if (!isMaxTooClose) {
+        marks.push({
+          value: status.maximumAltitude,
+          label: `Max Altitude ${maxAlt}`,
+        })
+      }
     }
 
 
@@ -78,6 +87,17 @@ export default function BasicCard() {
           :
           (
             <>
+              {isMinTooClose &&
+                <Typography sx={{ fontSize: '.8em' }} color="text.secondary">
+                  {`Min Altitude: ${minAlt}`}
+
+                </Typography>
+              }
+              {isMaxTooClose &&
+                <Typography sx={{ fontSize: '.8em' }} color="text.secondary">
+                  {`Max Altitude: ${maxAlt}`}
+                </Typography>
+              }
               <Box sx={{ height: 250 }}>
                 <Slider
                   sx={{
