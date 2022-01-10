@@ -42,7 +42,7 @@ export default function BasicCard() {
       maxAlt = parseFloat(status.maximumAltitude).toFixed(2);
       avgAlt = parseFloat(status.averageAltitude).toFixed(2);
       isMinTooClose = (avgAlt - minAlt) < 3;
-      isMaxTooClose = (minAlt - avgAlt) < 3;
+      isMaxTooClose = (maxAlt - avgAlt) < 3;
 
       marks = [
         {
