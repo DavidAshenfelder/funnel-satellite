@@ -82,12 +82,12 @@ export const formatHistoryData = ({ data }) => {
         averageAltitudeOfHour = totalAltitudeOfHour / itemsInHour;
 
         if (i+1 === data.length) {
-          historicalData.unshift({ altitude: parseFloat(averageAltitudeOfHour).toFixed(2), label: moment(topOfLoopHour).format('LT')});
+          historicalData.unshift({ altitude: parseFloat(averageAltitudeOfHour).toFixed(2), label: moment(topOfLoopHour).toISOString()});
         }
       } else {
 
         // if not then push the unshift the current calculations
-        historicalData.unshift({ altitude: parseFloat(averageAltitudeOfHour).toFixed(2), label: moment(topOfLoopHour).format('LT')});
+        historicalData.unshift({ altitude: parseFloat(averageAltitudeOfHour).toFixed(2), label: moment(topOfLoopHour).toISOString()});
         if (i+1 <= data.length) {
           itemsInHour = 0;
           averageAltitudeOfHour = 0;

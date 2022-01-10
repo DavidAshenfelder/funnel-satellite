@@ -2,6 +2,7 @@ import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import moment from 'moment';
 
 
 const RenderLineChart = () => {
@@ -11,7 +12,14 @@ const RenderLineChart = () => {
     fetch("/api/history")
       .then((res) => res.json())
       .then((data) => {
-        setHistory(data)
+        const mappedData = data.map((item) => {
+          const newItem = {
+            ...item,
+            label: moment(item.label).format('LT'),
+          }
+          return newItem;
+        });
+        setHistory(mappedData)
     });
   }, []);
 

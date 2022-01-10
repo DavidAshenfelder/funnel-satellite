@@ -121,7 +121,7 @@ const OVERRIDE_WRITE_BLOCK = false;
 if (ENVIRONMENT === 'production' || OVERRIDE_WRITE_BLOCK) {
   console.log('PRODUCTION or OVERRIDE: write to db');
 
-  // Every hour clean up records that are over a day old.
+  // Delete old records a day old at 11pm daily.
   cron.schedule('* * 23 * * *', () => {
     deleteRecordsOverOneDayOld({ db });
   });
